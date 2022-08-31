@@ -16,7 +16,6 @@ btnSearch.addEventListener('click', e => {
   e.preventDefault();
   cleanGallery();
   const trimmedValue = input.value.trim();
-  console.log(fetchImages(trimmedValue, pageNumber), 'Siemanko fetch');
 
   fetchImages(trimmedValue, pageNumber).then(foundData => {
     if (foundData.hits.length === 0) {
@@ -35,7 +34,6 @@ btnSearch.addEventListener('click', e => {
 btnLoadMore.addEventListener('click', () => {
   pageNumber++;
 const trimmedValue = input.value.trim();
-console.log(fetchImages(trimmedValue, pageNumber), 'Siemanko fetch');
 
 fetchImages(trimmedValue, pageNumber).then(foundData => {
   if (foundData.hits.length === 0) {
