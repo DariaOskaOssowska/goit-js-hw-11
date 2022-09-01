@@ -1,14 +1,14 @@
 import { fetchImages } from '../js/fetchImages';
 import Notiflix from 'notiflix';
-// // Opisany w dokumentacji
-// import SimpleLightbox from 'simplelightbox';
-// // Dodatkowy import stylów
-// import 'simplelightbox/dist/simple-lightbox.min.css';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const input = document.querySelector('.search-form-input');
 const btnSearch = document.querySelector('.search-form-button');
 const gallery = document.querySelector('.gallery');
 const btnLoadMore = document.querySelector('.load-more');
+
+btnLoadMore.style.display = 'none';
 
 let pageNumber = 1;
 
@@ -27,25 +27,28 @@ btnSearch.addEventListener('click', e => {
       Notiflix.Notify.success(
         `Hooray! We found ${foundData.totalHits} images.`
       );
+      btnLoadMore.style.display = 'block';
     }
   });
 });
 
 btnLoadMore.addEventListener('click', () => {
   pageNumber++;
-const trimmedValue = input.value.trim();
+  const trimmedValue = input.value.trim();
 
-fetchImages(trimmedValue, pageNumber).then(foundData => {
-  if (foundData.hits.length === 0) {
-    Notiflix.Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
-    );
-  } else {
-    renderImageList(foundData.hits);
-    Notiflix.Notify.success(`Hooray! We found ${foundData.totalHits} images.`);
-  }
-});
-
+  fetchImages(trimmedValue, pageNumber).then(foundData => {
+    if (foundData.hits.length === 0) {
+      Notiflix.Notify.failure(
+        'Sorry, there are no images matching your search query. Please try again.'
+      );
+      btnLoadMore.style.display = 'none';
+    } else {
+      renderImageList(foundData.hits);
+      Notiflix.Notify.success(
+        `Hooray! We found ${foundData.totalHits} images.`
+      );
+    }
+  });
 });
 
 function renderImageList(images) {
