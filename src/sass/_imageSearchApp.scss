@@ -1,3 +1,7 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .search-toolbar {
   background-color: #4056b4;
   height: 15%;
@@ -70,6 +74,11 @@
 
 .info {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  width: 350px;
+  font-size: 14px;
   margin-bottom: 20px;
   border-bottom: 1px solid #c3c2c2;
   border-left: 1px solid #c3c2c2;
@@ -85,7 +94,8 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  padding: 0 19px;
+  // justify-content: center;
+  padding: 0 12px;
 }
 
 .info-item-api {
